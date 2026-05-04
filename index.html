@@ -174,14 +174,71 @@
         .precio-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a !important; }
         .precio-valor { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #0a0a0a !important; }
 
-        .paquetes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        @media (max-width: 768px) { .paquetes-grid { grid-template-columns: 1fr; gap: 12px; } }
+        /* Paquetes grid - AHORA EN CELULAR TAMBIÉN EN HORIZONTAL */
+        .paquetes-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 12px; 
+        }
+        
+        /* Para celular muy pequeño, reducimos padding y fuentes */
+        @media (max-width: 480px) {
+            .paquetes-grid { 
+                gap: 8px; 
+            }
+            .paquete-card {
+                padding: 0.8rem 0.4rem;
+            }
+            .paquete-card .cantidad { 
+                font-size: 1.2rem; 
+                margin-bottom: 2px;
+            }
+            .paquete-card .precio { 
+                font-size: 1rem; 
+                margin-bottom: 6px;
+            }
+            .preview-ficha-imagen { 
+                width: 24px; 
+                height: 24px; 
+            }
+            .preview-ficha-cantidad { 
+                font-size: 0.55rem; 
+            }
+            .fichas-preview {
+                gap: 6px;
+                margin-top: 6px;
+                padding-top: 6px;
+            }
+            .descuento-badge, .badge-popular {
+                font-size: 0.55rem;
+                padding: 2px 6px;
+                top: -8px;
+            }
+            .descuento-badge { right: 6px; }
+            .badge-popular { left: 8px; }
+        }
+        
+        @media (max-width: 380px) {
+            .preview-ficha-imagen { 
+                width: 20px; 
+                height: 20px; 
+            }
+            .preview-ficha-cantidad { 
+                font-size: 0.5rem; 
+            }
+            .paquete-card .cantidad { 
+                font-size: 1rem; 
+            }
+            .paquete-card .precio { 
+                font-size: 0.85rem; 
+            }
+        }
         
         .paquete-card {
             background: #141414;
             border: 2px solid #333;
-            border-radius: 20px;
-            padding: 1.2rem;
+            border-radius: 16px;
+            padding: 0.9rem 0.5rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -190,18 +247,38 @@
         .paquete-card .cantidad, .paquete-card .precio { color: #ffffff; }
         .btn-check:checked+.paquete-card { border-color: #ffffff; background: #1f1f1f; transform: scale(1.02); }
         .paquete-card:hover { border-color: #ffffff; background: #1f1f1f; }
-        .paquete-card .cantidad { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
-        .paquete-card .precio { font-weight: 700; font-size: 1.3rem; margin-bottom: 12px; }
+        .paquete-card .cantidad { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+        .paquete-card .precio { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
         
-        .descuento-badge { position: absolute; top: -10px; right: 10px; background: #ffffff; color: #0a0a0a; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 30px; }
-        .badge-popular { position: absolute; top: -12px; left: 15px; background: #e67e22; color: white; font-size: 0.65rem; font-weight: 700; padding: 3px 12px; border-radius: 30px; }
+        .descuento-badge { 
+            position: absolute; 
+            top: -8px; 
+            right: 8px; 
+            background: #ffffff; 
+            color: #0a0a0a; 
+            font-size: 0.6rem; 
+            font-weight: 700; 
+            padding: 2px 8px; 
+            border-radius: 30px; 
+        }
+        .badge-popular { 
+            position: absolute; 
+            top: -10px; 
+            left: 10px; 
+            background: #e67e22; 
+            color: white; 
+            font-size: 0.6rem; 
+            font-weight: 700; 
+            padding: 2px 10px; 
+            border-radius: 30px; 
+        }
         
         .fichas-preview {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 12px;
-            padding-top: 12px;
+            gap: 10px;
+            margin-top: 8px;
+            padding-top: 8px;
             border-top: 1px solid #333;
             flex-wrap: wrap;
         }
@@ -209,11 +286,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
         }
         .preview-ficha-imagen {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             background: #1a1a1a;
             border-radius: 8px;
             display: flex;
@@ -222,17 +299,17 @@
             overflow: hidden;
         }
         .preview-ficha-imagen img { width: 100%; height: 100%; object-fit: contain; }
-        .preview-ficha-cantidad { font-size: 0.7rem; font-weight: 600; }
+        .preview-ficha-cantidad { font-size: 0.65rem; font-weight: 600; }
         .preview-ficha-dorada .preview-ficha-cantidad { color: #f1c40f; }
         .preview-ficha-verde .preview-ficha-cantidad { color: #2ecc71; }
         .preview-ficha-roja .preview-ficha-cantidad { color: #e74c3c; }
 
         .leyenda-fichas {
-            display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
-            margin-top: 1rem; padding: 0.8rem; background: #141414; border-radius: 16px; border: 1px solid #222;
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            margin-top: 1rem; padding: 0.6rem; background: #141414; border-radius: 16px; border: 1px solid #222;
         }
-        .leyenda-item { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; }
-        .leyenda-color { width: 20px; height: 20px; border-radius: 6px; }
+        .leyenda-item { display: flex; align-items: center; gap: 6px; font-size: 0.65rem; }
+        .leyenda-color { width: 16px; height: 16px; border-radius: 4px; }
         .leyenda-color.dorado { background: #f1c40f; }
         .leyenda-color.rojo { background: #e74c3c; }
         .leyenda-color.verde { background: #2ecc71; }
@@ -259,11 +336,10 @@
             .hero-section { padding: 1rem 0; }
             .fichas-verdes-grid { gap: 6px; }
             .ficha-numero { font-size: 0.55rem; padding: 1px 4px; }
-            .preview-ficha-imagen { width: 28px; height: 28px; }
         }
 
         .splide__slide img { width: 100%; height: auto; border-radius: 16px; pointer-events: none; }
-        .alert-custom { background: #141414; border: 1px solid #222; color: #ffffff; }
+        .alert-custom { background: #141414; border: 1px solid #222; color: #ffffff; font-size: 0.75rem; }
         .footer-link { color: #ffffff; text-decoration: none; font-size: 0.8rem; }
         .footer-link:hover { color: #cccccc; }
     </style>
@@ -413,14 +489,14 @@
         </div>
     </section>
 
-    <section class="py-4" id="compra">
+    <section class="py-3" id="compra">
         <div class="container">
-            <h2 class="font-serif fw-bold text-center mb-4 fs-2" style="color: #ffffff;">🎟️ Elige tu paquete</h2>
+            <h2 class="font-serif fw-bold text-center mb-3 fs-2" style="color: #ffffff;">🎟️ Elige tu paquete</h2>
             
-            <div class="leyenda-fichas mb-4">
-                <div class="leyenda-item"><div class="leyenda-color dorado"></div><span>Fichas Doradas (Moto + Xbox + 4 premios de $500.000)</span></div>
-                <div class="leyenda-item"><div class="leyenda-color verde"></div><span>Fichas Verdes ($200.000 - Pago inmediato - solo 10 fichas)</span></div>
-                <div class="leyenda-item"><div class="leyenda-color rojo"></div><span>Fichas Rojas ($2.000.000 - 1 ganador)</span></div>
+            <div class="leyenda-fichas mb-3">
+                <div class="leyenda-item"><div class="leyenda-color dorado"></div><span>Doradas (Moto+Xbox+4x$500k)</span></div>
+                <div class="leyenda-item"><div class="leyenda-color verde"></div><span>Verdes ($200k c/u - Pago inmediato)</span></div>
+                <div class="leyenda-item"><div class="leyenda-color rojo"></div><span>Rojas ($2.000.000)</span></div>
             </div>
             
             <div class="row g-3">
@@ -429,35 +505,33 @@
                         <div>
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq1" value="1">
                             <label class="paquete-card d-block" for="paq1">
-                                <div class="cantidad">1 BOLETA</div>
+                                <div class="cantidad">1</div>
                                 <div class="precio">$5.000</div>
                                 <div class="fichas-preview">
                                     <div class="preview-ficha preview-ficha-dorada">
                                         <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
-                                        <span class="preview-ficha-cantidad">1 Dorada</span>
+                                        <span class="preview-ficha-cantidad">1</span>
                                     </div>
                                 </div>
-                                <small class="d-block mt-2" style="color: #aaa;">🎯 Participas por Moto, Xbox y 4 premios de $500.000</small>
                             </label>
                         </div>
                         
                         <div>
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq4" value="4">
                             <label class="paquete-card d-block" for="paq4">
-                                <span class="descuento-badge">+2 ROJAS GRATIS</span>
-                                <div class="cantidad">4 BOLETAS</div>
+                                <span class="descuento-badge">+2 ROJAS</span>
+                                <div class="cantidad">4</div>
                                 <div class="precio">$20.000</div>
                                 <div class="fichas-preview">
                                     <div class="preview-ficha preview-ficha-dorada">
                                         <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
-                                        <span class="preview-ficha-cantidad">4 Doradas</span>
+                                        <span class="preview-ficha-cantidad">4</span>
                                     </div>
                                     <div class="preview-ficha preview-ficha-roja">
                                         <div class="preview-ficha-imagen"><img src="ficha-roja.png" onerror="this.innerHTML='🔴'"></div>
-                                        <span class="preview-ficha-cantidad">2 Rojas</span>
+                                        <span class="preview-ficha-cantidad">2</span>
                                     </div>
                                 </div>
-                                <small class="d-block mt-2" style="color: #e74c3c;">🎁 ¡2 Fichas Rojas incluidas! Sorteo $2.000.000</small>
                             </label>
                         </div>
                         
@@ -465,26 +539,25 @@
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq10" value="10">
                             <label class="paquete-card d-block" for="paq10">
                                 <span class="badge-popular">🔥 Más vendido</span>
-                                <div class="cantidad">10 BOLETAS</div>
+                                <div class="cantidad">10</div>
                                 <div class="precio">$50.000</div>
                                 <div class="fichas-preview">
                                     <div class="preview-ficha preview-ficha-dorada">
                                         <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
-                                        <span class="preview-ficha-cantidad">10 Doradas</span>
+                                        <span class="preview-ficha-cantidad">10</span>
                                     </div>
                                     <div class="preview-ficha preview-ficha-roja">
                                         <div class="preview-ficha-imagen"><img src="ficha-roja.png" onerror="this.innerHTML='🔴'"></div>
-                                        <span class="preview-ficha-cantidad">5 Rojas</span>
+                                        <span class="preview-ficha-cantidad">5</span>
                                     </div>
                                 </div>
-                                <small class="d-block mt-2" style="color: #e74c3c;">🎁 ¡5 Fichas Rojas incluidas! Sorteo $2.000.000</small>
                             </label>
                         </div>
                     </div>
 
-                    <div class="alert alert-custom mt-3 text-center py-2" style="font-size: 0.8rem;">
-                        💡 Más boletas = más oportunidades de ganar + Fichas Rojas gratis para el sorteo de $2.000.000<br>
-                        🍀 Las 10 Fichas Verdes están distribuidas entre TODAS las boletas vendidas. ¡Suerte!
+                    <div class="alert alert-custom mt-2 text-center py-2" style="font-size: 0.7rem;">
+                        💡 Más boletas = más oportunidades + Fichas Rojas gratis para $2.000.000<br>
+                        🍀 Las 10 Fichas Verdes están distribuidas entre TODAS las boletas
                     </div>
                 </div>
 
