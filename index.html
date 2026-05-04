@@ -4,52 +4,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>La Plebada – Sorteo Pulsar N125 + Xbox Series X</title>
+    <title>La Plebada – Sorteo Pulsar N125 + Xbox Series X + $2.000.000</title>
     <meta name="description"
-        content="La Plebada. Participa por una Pulsar N125, Xbox Series X y 4 premios de $500.000. Boletas desde $3.000.">
+        content="La Plebada. Participa por una Pulsar N125, Xbox Series X, 4 premios de $500.000 y $2.000.000 en efectivo.">
     
-    <!-- FAVICON -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ========== PROTECCIÓN VISUAL - DESHABILITAR SELECCIÓN ========== */
         * {
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
         }
 
-        /* Permitir selección solo en inputs */
-        input, textarea, select, [contenteditable="true"] {
+        input, textarea, select {
             -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
             user-select: text;
         }
 
-        /* Prevenir arrastre de imágenes */
         img {
             -webkit-user-drag: none;
             user-drag: none;
             pointer-events: auto;
-        }
-
-        img, .ficha-imagen {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
         body {
@@ -57,11 +40,8 @@
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            width: 100%;
-            position: relative;
         }
 
-        /* Mensaje de protección */
         #protection-message {
             display: none;
             position: fixed;
@@ -75,46 +55,18 @@
             font-size: 14px;
             z-index: 10000;
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            pointer-events: none;
             white-space: nowrap;
         }
 
         @media (max-width: 576px) {
-            #protection-message {
-                font-size: 11px;
-                white-space: normal;
-                text-align: center;
-                max-width: 90%;
-            }
+            #protection-message { font-size: 11px; white-space: normal; max-width: 90%; text-align: center; }
         }
 
-        /* Todos los textos en blanco por defecto */
-        p, span, li, a, label, small, strong, b, h1, h2, h3, h4, h5, h6, div:not(.precio-card):not(.alert) {
-            color: #ffffff;
-        }
+        .container { overflow-x: hidden; padding-left: 16px; padding-right: 16px; }
+        .row { margin-left: 0; margin-right: 0; }
+        [class*="col-"] { padding-left: 8px; padding-right: 8px; }
+        .font-serif { font-family: 'Playfair Display', serif; }
 
-        .container, .container-fluid {
-            overflow-x: hidden;
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
-        .row {
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        [class*="col-"] {
-            padding-left: 8px;
-            padding-right: 8px;
-        }
-
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Navbar */
         .navbar-plebada {
             background: rgba(10, 10, 10, 0.98) !important;
             backdrop-filter: blur(10px);
@@ -122,10 +74,9 @@
             padding: 0.75rem 0;
         }
 
-        /* Hero */
         .hero-section {
             background: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
-            padding: 2rem 0 2rem 0;
+            padding: 2rem 0;
         }
 
         .hero-title {
@@ -143,7 +94,6 @@
             color: transparent;
         }
 
-        /* Sorteo Oficial - fondo blanco con letra negra */
         .fecha-badge {
             display: inline-block;
             background: #ffffff;
@@ -155,12 +105,6 @@
             margin-bottom: 1rem;
         }
 
-        .fecha-badge i,
-        .fecha-badge span {
-            color: #0a0a0a !important;
-        }
-
-        /* Cards de premios - CON EFECTO HOVER ILUMINADO */
         .premio-card {
             background: #141414;
             border: 1px solid #222;
@@ -187,45 +131,21 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: all 0.3s ease;
         }
 
-        .premio-card:hover .premio-icon-wrapper {
-            background: #333;
-        }
+        .premio-icon-wrapper i { font-size: 1.4rem; color: #ffffff; }
+        .premio-categoria { font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; font-weight: 600; }
+        .premio-nombre { font-weight: 700; font-size: 0.9rem; color: #ffffff; }
+        .premio-inmediato { font-size: 0.7rem; color: #2ecc71; font-weight: 600; margin-top: 4px; }
 
-        .premio-icon-wrapper i {
-            font-size: 1.4rem;
-            color: #ffffff;
-        }
-
-        .premio-categoria {
-            font-size: 0.65rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #aaa;
-            font-weight: 600;
-        }
-
-        .premio-nombre {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: #ffffff;
-        }
-
-        /* FICHAS BENDECIDAS - CON EFECTO HOVER ILUMINADO */
-        .fichas-container {
+        .fichas-verdes-container {
             background: #141414;
-            border: 1px solid #222;
+            border: 1px solid #2ecc7130;
             border-radius: 20px;
             padding: 1rem;
+            margin-bottom: 1rem;
         }
-
-        .fichas-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-        }
+        .fichas-verdes-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
 
         .ficha-item {
             position: relative;
@@ -233,419 +153,126 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-
-        .ficha-item:hover {
-            transform: scale(1.05);
-        }
-
-        .ficha-item:hover .ficha-imagen {
-            border-color: #ffffff;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-        }
-
-        .ficha-imagen-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-        }
-
+        .ficha-item:hover { transform: scale(1.05); }
+        .ficha-item:hover .ficha-imagen { border-color: #ffffff; box-shadow: 0 0 12px rgba(255,255,255,0.2); }
+        .ficha-imagen-container { position: relative; width: 100%; aspect-ratio: 1 / 1; }
         .ficha-imagen {
-            width: 100%;
-            height: 100%;
-            background: #1a1a1a;
-            border: 1.5px solid #333;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            width: 100%; height: 100%; background: #1a1a1a; border: 1.5px solid #333;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden;
             transition: all 0.2s ease;
         }
-
-        .ficha-imagen img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            pointer-events: none;
-        }
-
-        /* Número SOBRE la ficha */
+        .ficha-imagen img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
         .ficha-numero {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Inter', monospace;
-            font-weight: 700;
-            font-size: 0.7rem;
-            color: #ffffff;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(3px);
-            padding: 2px 6px;
-            border-radius: 20px;
-            z-index: 2;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-            pointer-events: none;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-family: 'Inter', monospace; font-weight: 700; font-size: 0.7rem; color: #ffffff;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(3px); padding: 2px 6px;
+            border-radius: 20px; z-index: 2; white-space: nowrap; pointer-events: none;
         }
+        .ficha-item.especial .ficha-imagen { border-color: #ffffff; background: #222; }
 
-        /* Ficha especial */
-        .ficha-item.especial .ficha-imagen {
-            border-color: #ffffff;
-            background: #222;
-        }
+        .precio-card { background: #ffffff; border-radius: 24px; padding: 1.25rem; text-align: center; }
+        .precio-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a !important; }
+        .precio-valor { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #0a0a0a !important; }
 
-        .ficha-item.especial .ficha-numero {
-            color: #ffffff;
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Precio boleta - fondo blanco con letra negra */
-        .precio-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 1.25rem;
-            text-align: center;
-        }
-
-        .precio-label {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #0a0a0a !important;
-        }
-
-        .precio-valor {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #0a0a0a !important;
-        }
-
-        /* Paquetes de compra */
-        .paquetes-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        @media (max-width: 480px) {
-            .paquetes-grid {
-                gap: 8px;
-            }
-        }
-
+        .paquetes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        @media (max-width: 768px) { .paquetes-grid { grid-template-columns: 1fr; gap: 12px; } }
+        
         .paquete-card {
             background: #141414;
             border: 2px solid #333;
-            border-radius: 16px;
-            padding: 0.9rem 0.5rem;
+            border-radius: 20px;
+            padding: 1.2rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.25s ease;
             position: relative;
         }
-
-        .paquete-card .cantidad,
-        .paquete-card .precio {
-            color: #ffffff;
-        }
-
-        .btn-check:checked+.paquete-card {
-            border-color: #ffffff;
-            background: #1f1f1f;
-            transform: scale(1.02);
-        }
-
-        .paquete-card:hover {
-            border-color: #ffffff;
-            background: #1f1f1f;
-        }
-
-        .paquete-card .cantidad {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
-
-        .paquete-card .precio {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        .paquete-card .precio-original {
-            font-size: 0.7rem;
-            color: #888;
-            text-decoration: line-through;
-        }
-
-        .descuento-badge {
-            position: absolute;
-            top: -8px;
-            right: 8px;
-            background: #ffffff;
-            color: #0a0a0a;
-            font-size: 0.6rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 30px;
-        }
-
-        .badge-popular {
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            background: #e67e22;
-            color: white;
-            font-size: 0.6rem;
-            font-weight: 700;
-            padding: 2px 10px;
-            border-radius: 30px;
-        }
-
-        /* Input personalizado */
-        .custom-input-group {
-            background: #141414;
-            border: 2px solid #333;
-            border-radius: 16px;
-            padding: 0.8rem;
-        }
-
-        .custom-input-group label {
-            font-size: 0.65rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .custom-input-group input {
-            border-radius: 40px;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            background: #1a1a1a;
-            border: 1px solid #444;
-            color: #ffffff;
-        }
-
-        .custom-input-group input:focus {
-            background: #222;
-            border-color: #ffffff;
-            outline: none;
-        }
-
-        .custom-input-group input::placeholder {
-            color: #888;
-        }
-
-        .custom-input-group button {
-            border-radius: 40px;
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            background: #ffffff;
-            color: #0a0a0a;
-            border: none;
-            font-weight: 600;
-        }
-
-        .custom-input-group button:hover {
-            background: #e0e0e0;
-        }
-
-        /* Barra de progreso - SOLO PORCENTAJE */
-        .progress-wrapper {
-            background: #141414;
-            border-radius: 16px;
-            padding: 0.8rem;
-            border: 1px solid #222;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            font-weight: 500;
-            margin-bottom: 6px;
-        }
-
-        .progress-label span {
-            color: #ffffff;
-        }
-
-        .progress-track {
-            background: #2a2a2a;
-            border-radius: 20px;
-            height: 6px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: #ffffff;
-            border-radius: 20px;
-            height: 100%;
-            width: 0%;
-            transition: width 0.8s ease;
-        }
-
-        /* Botones sociales */
-        .btn-social {
-            position: fixed;
-            right: 12px;
-            z-index: 1000;
-            cursor: pointer;
-        }
-        .btn-instagram { bottom: 130px; }
-        .btn-whatsapp { bottom: 75px; }
-        .btn-facebook { bottom: 20px; }
+        .paquete-card .cantidad, .paquete-card .precio { color: #ffffff; }
+        .btn-check:checked+.paquete-card { border-color: #ffffff; background: #1f1f1f; transform: scale(1.02); }
+        .paquete-card:hover { border-color: #ffffff; background: #1f1f1f; }
+        .paquete-card .cantidad { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
+        .paquete-card .precio { font-weight: 700; font-size: 1.3rem; margin-bottom: 12px; }
         
-        .notification-bubble {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #e74c3c;
-            color: white;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            font-size: 9px;
+        .descuento-badge { position: absolute; top: -10px; right: 10px; background: #ffffff; color: #0a0a0a; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 30px; }
+        .badge-popular { position: absolute; top: -12px; left: 15px; background: #e67e22; color: white; font-size: 0.65rem; font-weight: 700; padding: 3px 12px; border-radius: 30px; }
+        
+        .fichas-preview {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #333;
+            flex-wrap: wrap;
+        }
+        .preview-ficha {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .preview-ficha-imagen {
+            width: 35px;
+            height: 35px;
+            background: #1a1a1a;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
+        .preview-ficha-imagen img { width: 100%; height: 100%; object-fit: contain; }
+        .preview-ficha-cantidad { font-size: 0.7rem; font-weight: 600; }
+        .preview-ficha-dorada .preview-ficha-cantidad { color: #f1c40f; }
+        .preview-ficha-verde .preview-ficha-cantidad { color: #2ecc71; }
+        .preview-ficha-roja .preview-ficha-cantidad { color: #e74c3c; }
 
-        .btn-social img {
-            border-radius: 12px;
-            width: 42px;
-            pointer-events: none;
+        .leyenda-fichas {
+            display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+            margin-top: 1rem; padding: 0.8rem; background: #141414; border-radius: 16px; border: 1px solid #222;
         }
+        .leyenda-item { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; }
+        .leyenda-color { width: 20px; height: 20px; border-radius: 6px; }
+        .leyenda-color.dorado { background: #f1c40f; }
+        .leyenda-color.rojo { background: #e74c3c; }
+        .leyenda-color.verde { background: #2ecc71; }
 
-        /* Carrito móvil */
+        .progress-wrapper { background: #141414; border-radius: 16px; padding: 0.8rem; border: 1px solid #222; }
+        .progress-label { display: flex; justify-content: space-between; font-size: 0.7rem; font-weight: 500; margin-bottom: 6px; }
+        .progress-track { background: #2a2a2a; border-radius: 20px; height: 6px; overflow: hidden; }
+        .progress-fill { background: #ffffff; border-radius: 20px; height: 100%; width: 0%; transition: width 0.8s ease; }
+
+        .btn-social { position: fixed; right: 12px; z-index: 1000; cursor: pointer; }
+        .btn-instagram { bottom: 130px; }
+        .btn-whatsapp { bottom: 75px; }
+        .btn-facebook { bottom: 20px; }
+        .notification-bubble { position: absolute; top: -5px; right: -5px; background: #e74c3c; color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; display: flex; align-items: center; justify-content: center; }
+        .btn-social img { border-radius: 12px; width: 42px; pointer-events: none; }
+
         .mobile-cart-bar {
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(15px);
-            border-top: 1px solid #222;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-            padding: 10px 16px;
+            background: rgba(10,10,10,0.98); backdrop-filter: blur(15px); border-top: 1px solid #222;
+            transform: translateY(100%); transition: transform 0.3s ease; z-index: 1000; padding: 10px 16px;
         }
-        .mobile-cart-bar.visible {
-            transform: translateY(0);
-        }
+        .mobile-cart-bar.visible { transform: translateY(0); }
 
-        .mobile-cart-bar span,
-        .mobile-cart-bar div {
-            color: #ffffff;
-        }
-
-        /* Footer */
-        .footer-link {
-            color: #ffffff;
-            text-decoration: none;
-            transition: 0.2s;
-            font-size: 0.8rem;
-        }
-        .footer-link:hover {
-            color: #cccccc;
-        }
-
-        hr {
-            border-color: #222;
-        }
-
-        /* Ajustes para móvil */
         @media (max-width: 576px) {
-            .hero-section {
-                padding: 1rem 0 1rem 0;
-            }
-            .fichas-grid {
-                gap: 6px;
-            }
-            .ficha-numero {
-                font-size: 0.55rem;
-                padding: 1px 4px;
-            }
-            .premio-card {
-                padding: 0.75rem 1rem;
-            }
-            .premio-nombre {
-                font-size: 0.8rem;
-            }
+            .hero-section { padding: 1rem 0; }
+            .fichas-verdes-grid { gap: 6px; }
+            .ficha-numero { font-size: 0.55rem; padding: 1px 4px; }
+            .preview-ficha-imagen { width: 28px; height: 28px; }
         }
 
-        /* Carrusel imágenes */
-        .splide__slide img {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            pointer-events: none;
-        }
-
-        /* Alert */
-        .alert-custom {
-            background: #141414;
-            border: 1px solid #222;
-            color: #ffffff;
-        }
-
-        /* Sidebar carrito */
-        .card-sidebar {
-            background: #141414 !important;
-            border: 1px solid #222 !important;
-        }
-
-        .card-sidebar span,
-        .card-sidebar strong {
-            color: #ffffff;
-        }
-
-        /* Textos misceláneos */
-        .text-muted {
-            color: #aaa !important;
-        }
-
-        small.text-muted {
-            color: #888 !important;
-        }
-
-        .modal-content,
-        .modal-body,
-        .modal-header {
-            color: #ffffff;
-            background: #141414;
-        }
-
-        .modal-body input,
-        .modal-body select {
-            color: #ffffff;
-            background: #1a1a1a;
-            border-color: #333;
-        }
-
-        .modal-body input::placeholder {
-            color: #666;
-        }
-
-        .btn-close-white {
-            filter: invert(1);
-        }
-
-        .list-unstyled li a {
-            color: #ffffff;
-        }
-
-        footer p {
-            color: #888 !important;
-        }
+        .splide__slide img { width: 100%; height: auto; border-radius: 16px; pointer-events: none; }
+        .alert-custom { background: #141414; border: 1px solid #222; color: #ffffff; }
+        .footer-link { color: #ffffff; text-decoration: none; font-size: 0.8rem; }
+        .footer-link:hover { color: #cccccc; }
     </style>
 </head>
 
 <body>
 
-    <!-- Mensaje de protección -->
     <div id="protection-message">🔒 Contenido protegido. No se permite copiar ni inspeccionar.</div>
 
-    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-plebada sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="#">
@@ -654,14 +281,12 @@
             </a>
             <div class="d-none d-lg-flex align-items-center ms-auto">
                 <span class="badge bg-white text-dark px-3 py-2 rounded-pill">
-                    <i class="ti ti-calendar-event me-1"></i>
-                    29 de Mayo • Medellín
+                    <i class="ti ti-calendar-event me-1"></i> 29 de Mayo • Medellín
                 </span>
             </div>
         </div>
     </nav>
 
-    <!-- BOTONES SOCIALES -->
     <div class="btn-instagram btn-social">
         <a href="https://www.instagram.com/tu_perfil" target="_blank">
             <div class="notification-bubble">1</div>
@@ -684,7 +309,6 @@
         </a>
     </div>
 
-    <!-- HERO SECTION -->
     <section class="hero-section">
         <div class="container">
             <div class="row g-3">
@@ -697,38 +321,24 @@
                         y más premios
                     </h1>
                     
-                    <!-- CARRUSEL -->
                     <div class="card border-0 bg-transparent shadow-none rounded-4 overflow-hidden">
                         <section id="main-carousel" class="splide">
                             <div class="splide__track">
                                 <ul class="splide__list">
-                                    <li class="splide__slide">
-                                        <img src="moto.jpg" 
-                                             alt="Pulsar N125" 
-                                             class="w-100 rounded-3"
-                                             onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=Pulsar+N125'">
-                                    </li>
-                                    <li class="splide__slide">
-                                        <img src="xbox.jpg" 
-                                             alt="Xbox Series X" 
-                                             class="w-100 rounded-3"
-                                             onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=Xbox+Series+X'">
-                                    </li>
-                                    <li class="splide__slide">
-                                        <img src="dinero.jpg" 
-                                             alt="$500.000" 
-                                             class="w-100 rounded-3"
-                                             onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=%24500.000'">
-                                    </li>
+                                    <li class="splide__slide"><img src="moto.jpg" class="w-100 rounded-3" onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=Pulsar+N125'"></li>
+                                    <li class="splide__slide"><img src="xbox.jpg" class="w-100 rounded-3" onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=Xbox+Series+X'"></li>
+                                    <li class="splide__slide"><img src="efectivo-500mil.jpg" class="w-100 rounded-3" onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=%24500.000'"></li>
+                                    <li class="splide__slide"><img src="efectivo-2millones.jpg" class="w-100 rounded-3" onerror="this.src='https://placehold.co/600x400/1a1a1a/ffffff?text=%242.000.000'"></li>
                                 </ul>
                             </div>
                         </section>
-                        <section id="thumbnail-carousel" class="splide mt-2" style="max-width: 150px; margin: 0 auto;">
+                        <section id="thumbnail-carousel" class="splide mt-2" style="max-width: 180px; margin: 0 auto;">
                             <div class="splide__track">
                                 <ul class="splide__list">
-                                    <li class="splide__slide"><img src="moto.jpg" style="width: 45px; height: 38px; object-fit: cover; border-radius: 6px;" onerror="this.src='https://placehold.co/45x38/1a1a1a/ffffff?text=M'"></li>
-                                    <li class="splide__slide"><img src="xbox.jpg" style="width: 45px; height: 38px; object-fit: cover; border-radius: 6px;" onerror="this.src='https://placehold.co/45x38/1a1a1a/ffffff?text=X'"></li>
-                                    <li class="splide__slide"><img src="dinero.jpg" style="width: 45px; height: 38px; object-fit: cover; border-radius: 6px;" onerror="this.src='https://placehold.co/45x38/1a1a1a/ffffff?text=$'"></li>
+                                    <li class="splide__slide"><img src="moto.jpg" style="width:45px;height:38px;object-fit:cover;border-radius:6px;"></li>
+                                    <li class="splide__slide"><img src="xbox.jpg" style="width:45px;height:38px;object-fit:cover;border-radius:6px;"></li>
+                                    <li class="splide__slide"><img src="efectivo-500mil.jpg" style="width:45px;height:38px;object-fit:cover;border-radius:6px;"></li>
+                                    <li class="splide__slide"><img src="efectivo-2millones.jpg" style="width:45px;height:38px;object-fit:cover;border-radius:6px;"></li>
                                 </ul>
                             </div>
                         </section>
@@ -736,154 +346,82 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <!-- PREMIOS CON EFECTO HOVER ILUMINADO -->
                     <div class="premio-card d-flex align-items-center gap-3">
-                        <div class="premio-icon-wrapper">
-                            <i class="ti ti-motorbike"></i>
-                        </div>
-                        <div>
-                            <div class="premio-categoria">PREMI0 MAYOR</div>
-                            <div class="premio-nombre fw-bold">Pulsar N125 0KM</div>
-                        </div>
+                        <div class="premio-icon-wrapper"><i class="ti ti-motorbike"></i></div>
+                        <div><div class="premio-categoria">🏆 PREMIO MAYOR</div><div class="premio-nombre fw-bold">Pulsar N125 0KM</div></div>
                     </div>
                     
                     <div class="premio-card d-flex align-items-center gap-3">
-                        <div class="premio-icon-wrapper">
-                            <i class="ti ti-device-gamepad"></i>
-                        </div>
-                        <div>
-                            <div class="premio-categoria">SEGUNDO PREMIO</div>
-                            <div class="premio-nombre fw-bold">Xbox Series X</div>
-                        </div>
+                        <div class="premio-icon-wrapper"><i class="ti ti-device-gamepad"></i></div>
+                        <div><div class="premio-categoria">🎮 SEGUNDO PREMIO</div><div class="premio-nombre fw-bold">Xbox Series X</div></div>
                     </div>
-                    
-                    <div class="premio-card d-flex align-items-center gap-3">
-                        <div class="premio-icon-wrapper">
-                            <i class="ti ti-cash"></i>
-                        </div>
+
+                    <div class="premio-card d-flex align-items-center gap-3" style="border-color: #f1c40f30;">
+                        <div class="premio-icon-wrapper" style="background: #f1c40f20;"><i class="ti ti-cash" style="color: #f1c40f;"></i></div>
                         <div>
-                            <div class="premio-categoria">4 GANADORES</div>
-                            <div class="premio-nombre fw-bold">$500.000 cada uno</div>
+                            <div class="premio-categoria" style="color: #f1c40f;">⭐ 4 GANADORES</div>
+                            <div class="premio-nombre fw-bold">$500.000 c/u - Total $2.000.000</div>
+                            <div class="premio-inmediato" style="color: #f1c40f;">🎯 Juegan con FICHAS DORADAS (Moto y Xbox también)</div>
                         </div>
                     </div>
 
-                    <!-- FICHAS BENDECIDAS CON EFECTO HOVER -->
-                    <div class="fichas-container mb-3">
-                        <div class="fw-bold mb-2 text-center" style="font-size: 0.7rem; letter-spacing: 1px; color: #aaa;">
-                            🎯 FICHAS BENDECIDAS - Ganan $200.000
-                        </div>
-                        <div class="fichas-grid">
-                            <div class="ficha-item especial">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">2315</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">1299</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">0098</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item especial">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">0314</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">6710</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">0000</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">1111</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item especial">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">6666</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">3456</span>
-                                </div>
-                            </div>
-                            <div class="ficha-item">
-                                <div class="ficha-imagen-container">
-                                    <div class="ficha-imagen">
-                                        <img src="ficha.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🎲</span>'">
-                                    </div>
-                                    <span class="ficha-numero">4321</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-2">
-                            <small style="color: #888;">✨ Pago inmediato si sale tu ficha ✨</small>
+                    <div class="premio-card d-flex align-items-center gap-3" style="border-color: #2ecc7130;">
+                        <div class="premio-icon-wrapper" style="background: #2ecc7130;"><i class="ti ti-cash" style="color: #2ecc71;"></i></div>
+                        <div>
+                            <div class="premio-categoria" style="color: #2ecc71;">🍀 PREMIOS INMEDIATOS</div>
+                            <div class="premio-nombre fw-bold">$200.000 c/u - Fichas Verdes</div>
+                            <div class="premio-inmediato">⚡ ¡Pago inmediato! Solo 10 fichas verdes en total</div>
                         </div>
                     </div>
 
-                    <!-- BARRA DE PROGRESO - SOLO PORCENTAJE -->
+                    <div class="premio-card d-flex align-items-center gap-3" style="border-color: #e74c3c30;">
+                        <div class="premio-icon-wrapper" style="background: #e74c3c20;"><i class="ti ti-cash" style="color: #e74c3c;"></i></div>
+                        <div>
+                            <div class="premio-categoria" style="color: #e74c3c;">🔥 SORTEO ESPECIAL</div>
+                            <div class="premio-nombre fw-bold">$2.000.000 en efectivo - 1 GANADOR</div>
+                            <div class="premio-inmediato" style="color: #e74c3c;">🎯 Fichas Rojas - Incluidas en paquetes de 4 y 10 boletas</div>
+                        </div>
+                    </div>
+
+                    <div class="fichas-verdes-container">
+                        <div class="fw-bold mb-2 text-center" style="font-size: 0.7rem; color: #2ecc71;">🍀 FICHAS VERDES - 10 fichas en total - $200.000 c/u (Pago inmediato)</div>
+                        <div class="fichas-verdes-grid">
+                            <div class="ficha-item especial"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">2315</span></div></div>
+                            <div class="ficha-item"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">1299</span></div></div>
+                            <div class="ficha-item"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">0098</span></div></div>
+                            <div class="ficha-item especial"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">0314</span></div></div>
+                            <div class="ficha-item"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">6710</span></div></div>
+                            <div class="ficha-item"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">0000</span></div></div>
+                            <div class="ficha-item"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">1111</span></div></div>
+                            <div class="ficha-item especial"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">6666</span></div></div>
+                            <div class="ficha-item"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">3456</span></div></div>
+                            <div class="ficha-item"><div class="ficha-imagen-container"><div class="ficha-imagen"><img src="ficha-verde.png" onerror="this.parentElement.innerHTML='<span style=\'font-size:1rem;\'>🍀</span>'"></div><span class="ficha-numero">4321</span></div></div>
+                        </div>
+                    </div>
+
                     <div class="progress-wrapper mb-3">
-                        <div class="progress-label">
-                            <span>🎯 Progreso de ventas</span>
-                            <span id="porcentajeVentas">0%</span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" id="barraProgreso" style="width: 0%;"></div>
-                        </div>
+                        <div class="progress-label"><span>🎯 Progreso de ventas</span><span id="porcentajeVentas">0%</span></div>
+                        <div class="progress-track"><div class="progress-fill" id="barraProgreso" style="width: 0%;"></div></div>
                     </div>
 
-                    <!-- PRECIO - fondo blanco con letra negra -->
                     <div class="precio-card">
                         <div class="precio-label">Valor por boleta</div>
-                        <div class="precio-valor">$3.000</div>
+                        <div class="precio-valor">$5.000</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN COMPRA -->
     <section class="py-4" id="compra">
         <div class="container">
             <h2 class="font-serif fw-bold text-center mb-4 fs-2" style="color: #ffffff;">🎟️ Elige tu paquete</h2>
+            
+            <div class="leyenda-fichas mb-4">
+                <div class="leyenda-item"><div class="leyenda-color dorado"></div><span>Fichas Doradas (Moto + Xbox + 4 premios de $500.000)</span></div>
+                <div class="leyenda-item"><div class="leyenda-color verde"></div><span>Fichas Verdes ($200.000 - Pago inmediato - solo 10 fichas)</span></div>
+                <div class="leyenda-item"><div class="leyenda-color rojo"></div><span>Fichas Rojas ($2.000.000 - 1 ganador)</span></div>
+            </div>
             
             <div class="row g-3">
                 <div class="col-lg-8">
@@ -891,63 +429,82 @@
                         <div>
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq1" value="1">
                             <label class="paquete-card d-block" for="paq1">
-                                <div class="cantidad">1</div>
-                                <div class="precio mt-1">$3.000</div>
+                                <div class="cantidad">1 BOLETA</div>
+                                <div class="precio">$5.000</div>
+                                <div class="fichas-preview">
+                                    <div class="preview-ficha preview-ficha-dorada">
+                                        <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
+                                        <span class="preview-ficha-cantidad">1 Dorada</span>
+                                    </div>
+                                </div>
+                                <small class="d-block mt-2" style="color: #aaa;">🎯 Participas por Moto, Xbox y 4 premios de $500.000</small>
                             </label>
                         </div>
+                        
                         <div>
-                            <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq5" value="5">
-                            <label class="paquete-card d-block" for="paq5">
-                                <span class="descuento-badge">Ahorra $2.000</span>
-                                <div class="cantidad">5</div>
-                                <div class="precio mt-1">$13.000</div>
-                                <div class="precio-original">$15.000</div>
+                            <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq4" value="4">
+                            <label class="paquete-card d-block" for="paq4">
+                                <span class="descuento-badge">+2 ROJAS GRATIS</span>
+                                <div class="cantidad">4 BOLETAS</div>
+                                <div class="precio">$20.000</div>
+                                <div class="fichas-preview">
+                                    <div class="preview-ficha preview-ficha-dorada">
+                                        <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
+                                        <span class="preview-ficha-cantidad">4 Doradas</span>
+                                    </div>
+                                    <div class="preview-ficha preview-ficha-roja">
+                                        <div class="preview-ficha-imagen"><img src="ficha-roja.png" onerror="this.innerHTML='🔴'"></div>
+                                        <span class="preview-ficha-cantidad">2 Rojas</span>
+                                    </div>
+                                </div>
+                                <small class="d-block mt-2" style="color: #e74c3c;">🎁 ¡2 Fichas Rojas incluidas! Sorteo $2.000.000</small>
                             </label>
                         </div>
+                        
                         <div>
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq10" value="10">
                             <label class="paquete-card d-block" for="paq10">
                                 <span class="badge-popular">🔥 Más vendido</span>
-                                <div class="cantidad">10</div>
-                                <div class="precio mt-1">$25.000</div>
-                                <div class="precio-original">$30.000</div>
+                                <div class="cantidad">10 BOLETAS</div>
+                                <div class="precio">$50.000</div>
+                                <div class="fichas-preview">
+                                    <div class="preview-ficha preview-ficha-dorada">
+                                        <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
+                                        <span class="preview-ficha-cantidad">10 Doradas</span>
+                                    </div>
+                                    <div class="preview-ficha preview-ficha-roja">
+                                        <div class="preview-ficha-imagen"><img src="ficha-roja.png" onerror="this.innerHTML='🔴'"></div>
+                                        <span class="preview-ficha-cantidad">5 Rojas</span>
+                                    </div>
+                                </div>
+                                <small class="d-block mt-2" style="color: #e74c3c;">🎁 ¡5 Fichas Rojas incluidas! Sorteo $2.000.000</small>
                             </label>
                         </div>
                     </div>
 
-                    <!-- Opción libre -->
-                    <div class="custom-input-group">
-                        <label class="d-block mb-2">📝 Cantidad personalizada</label>
-                        <div class="d-flex gap-2">
-                            <input type="number" id="cantidadCustom" class="form-control" 
-                                   min="1" step="1" placeholder="Ej: 25">
-                            <button type="button" id="btnCustom">
-                                Aplicar
-                            </button>
-                        </div>
-                    </div>
-
                     <div class="alert alert-custom mt-3 text-center py-2" style="font-size: 0.8rem;">
-                        💡 Más boletas = más oportunidades de ganar
+                        💡 Más boletas = más oportunidades de ganar + Fichas Rojas gratis para el sorteo de $2.000.000<br>
+                        🍀 Las 10 Fichas Verdes están distribuidas entre TODAS las boletas vendidas. ¡Suerte!
                     </div>
                 </div>
 
-                <!-- Sidebar desktop -->
                 <div class="col-lg-4 d-none d-lg-block">
                     <div class="card border-0 shadow-lg rounded-4 sticky-top" style="top: 80px; background: #141414; border: 1px solid #222 !important;">
                         <div class="card-body p-3">
                             <h5 class="font-serif fw-bold mb-3" style="color: #ffffff;">🛒 Tu compra</h5>
                             <div class="d-flex justify-content-between py-2 border-top border-bottom" style="border-color: #222 !important;">
-                                <span style="color: #ffffff;">Boletas</span>
-                                <strong id="cantTicketsDesktop" style="color: #ffffff;">0</strong>
+                                <span style="color: #ffffff;">Boletas</span><strong id="cantTicketsDesktop" style="color: #ffffff;">0</strong>
                             </div>
-                            <div class="d-flex justify-content-between py-2 fw-bold fs-5">
-                                <span style="color: #ffffff;">Total</span>
-                                <strong class="text-success" id="totalDineroDesktop">$0</strong>
+                            <div class="d-flex justify-content-between py-2">
+                                <span style="color: #aaa;">Fichas Doradas</span><strong id="fichasDoradasDesktop" style="color: #f1c40f;">0</strong>
                             </div>
-                            <button class="btn btn-light w-100 py-2 fw-bold rounded-pill mt-3" style="background: #fff; color: #000;" onclick="abrirCheckout()" id="btnPagarDesktop" disabled>
-                                Pagar ahora →
-                            </button>
+                            <div class="d-flex justify-content-between py-2">
+                                <span style="color: #aaa;">Fichas Rojas ($2.000.000)</span><strong id="fichasRojasDesktop" style="color: #e74c3c;">0</strong>
+                            </div>
+                            <div class="d-flex justify-content-between py-2 border-top border-bottom" style="border-color: #222 !important;">
+                                <span style="color: #ffffff;">Total</span><strong class="text-success" id="totalDineroDesktop">$0</strong>
+                            </div>
+                            <button class="btn btn-light w-100 py-2 fw-bold rounded-pill mt-3" style="background: #fff; color: #000;" onclick="abrirCheckout()" id="btnPagarDesktop" disabled>Pagar ahora →</button>
                         </div>
                     </div>
                 </div>
@@ -955,12 +512,11 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="pt-4 pb-3 border-top mt-3" style="background: #0a0a0a; border-color: #222 !important;">
         <div class="container">
             <div class="row g-3">
                 <div class="col-md-4 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-2">
+                    <div class="d-flex align-items-center gap-2 mb-2">
                         <img src="logo.png" alt="La Plebada" height="30" onerror="this.style.display='none'">
                         <span class="font-serif fw-bold fs-5" style="color: #ffffff;">La Plebada</span>
                     </div>
@@ -985,7 +541,6 @@
         </div>
     </footer>
 
-    <!-- CARRITO MÓVIL -->
     <div class="mobile-cart-bar position-fixed bottom-0 start-0 end-0 d-lg-none" id="mobileCart">
         <div class="d-flex align-items-center justify-content-between">
             <div>
@@ -997,18 +552,17 @@
         </div>
     </div>
 
-    <!-- MODALES -->
     <div class="modal fade" id="modalBuscarTickets" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0 shadow" style="background: #141414; border: 1px solid #222;">
-                <div class="modal-header border-0 pb-0" style="border-bottom-color: #222 !important;">
-                    <h5 class="modal-title fw-bold" style="color: #ffffff;">🔍 Buscar mis boletas</h5>
+            <div class="modal-content" style="background: #141414; border: 1px solid #222;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" style="color:#fff;">🔍 Buscar mis boletas</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="tel" id="inputBuscarTickets" class="form-control rounded-pill text-center mb-3" style="background: #1a1a1a; border-color: #333; color: #ffffff;" placeholder="Ej: 3001234567">
-                    <button class="btn btn-light w-100 rounded-pill py-2" style="background: #fff; color: #000;" onclick="buscarTickets()">Buscar</button>
-                    <div id="resultadoBusqueda" class="mt-3 text-center small"></div>
+                    <input type="tel" id="inputBuscarTickets" class="form-control rounded-pill mb-3" style="background:#1a1a1a; border-color:#333; color:#fff;" placeholder="Ej: 3001234567">
+                    <button class="btn btn-light w-100 rounded-pill py-2" style="background:#fff; color:#000;" onclick="buscarTickets()">Buscar</button>
+                    <div id="resultadoBusqueda" class="mt-3 text-center"></div>
                 </div>
             </div>
         </div>
@@ -1016,59 +570,45 @@
 
     <div class="modal fade" id="modalCheckout" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0 shadow" style="background: #141414; border: 1px solid #222;">
-                <div class="modal-header border-0 rounded-top-4" style="background: #1a1a1a; border-bottom: 1px solid #222;">
-                    <h5 class="modal-title fw-bold" style="color: #ffffff;">Finalizar compra</h5>
+            <div class="modal-content" style="background: #141414; border: 1px solid #222;">
+                <div class="modal-header" style="background:#1a1a1a; border-bottom:1px solid #222;">
+                    <h5 class="modal-title fw-bold" style="color:#fff;">Finalizar compra</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-3">
                     <form id="formCheckout">
-                        <div class="card border-0 mb-3" style="background: #1a1a1a;">
+                        <div class="card border-0 mb-3" style="background:#1a1a1a;">
                             <div class="card-body p-3">
-                                <div class="d-flex justify-content-between">
-                                    <span style="color: #ffffff;">Boletas</span>
-                                    <strong id="resumenNumeros" style="color: #ffffff;">0</strong>
-                                </div>
-                                <div class="d-flex justify-content-between fw-bold fs-5">
-                                    <span style="color: #ffffff;">Total</span>
-                                    <strong class="text-success" id="resumenTotal">$0</strong>
-                                </div>
+                                <div class="d-flex justify-content-between"><span style="color:#fff;">Boletas</span><strong id="resumenNumeros" style="color:#fff;">0</strong></div>
+                                <div class="d-flex justify-content-between"><span style="color:#aaa;">Fichas Doradas</span><strong id="resumenDoradas" style="color:#f1c40f;">0</strong></div>
+                                <div class="d-flex justify-content-between"><span style="color:#aaa;">Fichas Rojas ($2.000.000)</span><strong id="resumenRojas" style="color:#e74c3c;">0</strong></div>
+                                <div class="d-flex justify-content-between fw-bold fs-5 mt-2"><span style="color:#fff;">Total</span><strong class="text-success" id="resumenTotal">$0</strong></div>
                             </div>
                         </div>
                         <input type="hidden" id="totalPagarInput">
-                        <h6 class="fw-bold mb-2 small" style="color: #ffffff;">Datos del comprador</h6>
-                        <input type="tel" class="form-control rounded-pill mb-2" id="celularCliente" style="background: #1a1a1a; border-color: #333; color: #ffffff;" placeholder="Celular" required>
+                        <h6 class="fw-bold mb-2 small" style="color:#fff;">Datos del comprador</h6>
+                        <input type="tel" class="form-control rounded-pill mb-2" id="celularCliente" style="background:#1a1a1a; border-color:#333; color:#fff;" placeholder="Celular" required>
                         <div class="row g-2 mb-2">
-                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background: #1a1a1a; border-color: #333; color: #ffffff;" id="nombreCliente" placeholder="Nombre" required></div>
-                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background: #1a1a1a; border-color: #333; color: #ffffff;" id="apellidoCliente" placeholder="Apellido" required></div>
+                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background:#1a1a1a; border-color:#333; color:#fff;" id="nombreCliente" placeholder="Nombre" required></div>
+                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background:#1a1a1a; border-color:#333; color:#fff;" id="apellidoCliente" placeholder="Apellido" required></div>
                         </div>
-                        <select class="form-select rounded-pill mb-3" id="departamento" style="background: #1a1a1a; border-color: #333; color: #ffffff;" required>
+                        <select class="form-select rounded-pill mb-3" id="departamento" style="background:#1a1a1a; border-color:#333; color:#fff;" required>
                             <option value="">Departamento</option>
-                            <option>Antioquia</option>
-                            <option>Bogotá</option>
-                            <option>Valle</option>
+                            <option>Antioquia</option><option>Bogotá</option><option>Valle</option>
                         </select>
-                        <hr style="border-color: #222;">
-                        <h6 class="fw-bold mb-2 small" style="color: #ffffff;">Método de pago</h6>
+                        <hr style="border-color:#222;">
+                        <h6 class="fw-bold mb-2 small" style="color:#fff;">Método de pago</h6>
                         <div class="d-flex gap-2 mb-2">
                             <button type="button" class="btn btn-outline-light rounded-pill px-3 btn-sm" onclick="seleccionarMetodo('pse')">💳 PSE</button>
                             <button type="button" class="btn btn-outline-success rounded-pill px-3 btn-sm" onclick="seleccionarMetodo('transferencia')">🏦 Transferencia</button>
                         </div>
-                        <div id="metodoPSE" class="d-none">
-                            <button type="button" class="btn btn-warning w-100 rounded-pill py-2" style="background: #ffc107; color: #000;" onclick="iniciarPagoPSE()">Ir a pagar con PSE</button>
-                        </div>
+                        <div id="metodoPSE" class="d-none"><button type="button" class="btn btn-warning w-100 rounded-pill py-2" onclick="iniciarPagoPSE()">Ir a pagar con PSE</button></div>
                         <div id="metodoTransferencia" class="d-none">
-                            <div class="card border-0" style="background: #1a1a1a;">
+                            <div class="card border-0" style="background:#1a1a1a;">
                                 <div class="card-body p-2">
-                                    <div class="d-flex justify-content-between mb-2 align-items-center">
-                                        <div><small style="color: #ffffff;"><strong>Bancolombia</strong><br><span id="bancolombia">24000004828</span></small></div>
-                                        <button class="btn btn-sm btn-outline-light rounded-pill" onclick="copiarTexto('bancolombia')">Copiar</button>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2 align-items-center">
-                                        <div><small style="color: #ffffff;"><strong>Nequi</strong><br><span id="nequi">3117835000</span></small></div>
-                                        <button class="btn btn-sm btn-outline-light rounded-pill" onclick="copiarTexto('nequi')">Copiar</button>
-                                    </div>
-                                    <input type="file" class="form-control form-control-sm mb-2" id="comprobantePago" accept="image/*" style="background: #1a1a1a; border-color: #333; color: #ffffff;">
+                                    <div class="d-flex justify-content-between mb-2"><div><small><strong>Bancolombia</strong><br><span id="bancolombia">24000004828</span></small></div><button class="btn btn-sm btn-outline-light rounded-pill" onclick="copiarTexto('bancolombia')">Copiar</button></div>
+                                    <div class="d-flex justify-content-between mb-2"><div><small><strong>Nequi</strong><br><span id="nequi">3117835000</span></small></div><button class="btn btn-sm btn-outline-light rounded-pill" onclick="copiarTexto('nequi')">Copiar</button></div>
+                                    <input type="file" class="form-control form-control-sm mb-2" id="comprobantePago" accept="image/*" style="background:#1a1a1a; border-color:#333;">
                                     <button type="button" class="btn btn-success w-100 rounded-pill py-1" onclick="procesarTransferencia(event)">Confirmar pago</button>
                                 </div>
                             </div>
@@ -1082,85 +622,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
-        // ==================== PROTECCIÓN ANTISELECT Y ANTICOPIA ====================
-        
-        // Deshabilitar clic derecho
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            mostrarMensajeProteccion();
-            return false;
-        });
-        
-        // Deshabilitar teclas de desarrollador
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) ||
-                (e.ctrlKey && e.key === 'u')) {
-                e.preventDefault();
-                mostrarMensajeProteccion();
-                return false;
-            }
-            
-            if (e.ctrlKey && (e.key === 'c' || e.key === 'x')) {
-                if (!e.target.closest('input') && !e.target.closest('textarea') && !e.target.closest('select')) {
-                    e.preventDefault();
-                    mostrarMensajeProteccion();
-                    return false;
-                }
+        document.addEventListener('contextmenu', e => { e.preventDefault(); mostrarMensaje(); return false; });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault(); mostrarMensaje(); return false;
             }
         });
-        
-        // Deshabilitar arrastre
-        document.querySelectorAll('img, .premio-card, .ficha-item').forEach(el => {
-            el.addEventListener('dragstart', function(e) {
-                e.preventDefault();
-                return false;
-            });
-        });
-        
-        // Detectar DevTools
-        let devtoolsOpen = false;
-        const checkDevTools = function() {
-            const threshold = 160;
-            const widthDiff = window.outerWidth - window.innerWidth > threshold;
-            const heightDiff = window.outerHeight - window.innerHeight > threshold;
-            if (widthDiff || heightDiff) {
-                if (!devtoolsOpen) {
-                    devtoolsOpen = true;
-                    mostrarMensajeProteccion();
-                }
-            } else {
-                devtoolsOpen = false;
-            }
-        };
-        
-        let mensajeTimeout;
-        function mostrarMensajeProteccion() {
-            const msg = document.getElementById('protection-message');
-            if (msg) {
-                msg.style.display = 'block';
-                clearTimeout(mensajeTimeout);
-                mensajeTimeout = setTimeout(() => {
-                    msg.style.display = 'none';
-                }, 2000);
-            }
-        }
-        
-        setInterval(checkDevTools, 500);
-        
-        document.body.style.userSelect = 'none';
-        document.body.style.webkitUserSelect = 'none';
-        
-        document.querySelectorAll('input, textarea, select').forEach(el => {
-            el.style.userSelect = 'text';
-            el.style.webkitUserSelect = 'text';
-        });
-        
-        // ==================== FUNCIONES DEL SORTEO ====================
+        function mostrarMensaje() { const m = document.getElementById('protection-message'); if(m) { m.style.display = 'block'; setTimeout(() => m.style.display = 'none', 2000); } }
         
         let cantidadSeleccionada = 0;
         let totalSeleccionado = 0;
-        const precioUnitario = 3000;
+        const precioUnitario = 5000;
         
         let boletasVendidas = 2847;
         const metaTotal = 10000;
@@ -1168,116 +640,67 @@
         
         function actualizarBarraProgreso() {
             const barra = document.getElementById('barraProgreso');
-            const porcentajeTexto = document.getElementById('porcentajeVentas');
+            const ptje = document.getElementById('porcentajeVentas');
             if (barra) barra.style.width = porcentaje + '%';
-            if (porcentajeTexto) porcentajeTexto.innerText = Math.floor(porcentaje) + '%';
+            if (ptje) ptje.innerText = Math.floor(porcentaje) + '%';
         }
         
-        function incrementarVentas(cantidad) {
-            boletasVendidas += cantidad;
-            porcentaje = (boletasVendidas / metaTotal) * 100;
-            if (porcentaje > 100) porcentaje = 100;
-            actualizarBarraProgreso();
+        function calcularFichas(cantidad) {
+            let doradas = cantidad;
+            let rojas = 0;
+            if (cantidad >= 4 && cantidad < 10) {
+                rojas = 2;
+            } else if (cantidad >= 10) {
+                rojas = 5;
+            }
+            return { doradas, rojas };
         }
         
         function actualizarCompra(cantidad, total) {
             cantidadSeleccionada = cantidad;
             totalSeleccionado = total;
-            const cantElem = document.getElementById('cantTicketsDesktop');
-            const totalElem = document.getElementById('totalDineroDesktop');
-            const cantMobile = document.getElementById('lblCantidadMobile');
-            const totalMobile = document.getElementById('lblTotalMobile');
-            const resumenNumeros = document.getElementById('resumenNumeros');
-            const resumenTotal = document.getElementById('resumenTotal');
-            const totalInput = document.getElementById('totalPagarInput');
-            if (cantElem) cantElem.innerText = cantidad;
-            if (totalElem) totalElem.innerText = '$' + total.toLocaleString('es-CO');
-            if (cantMobile) cantMobile.innerText = cantidad;
-            if (totalMobile) totalMobile.innerText = '$' + total.toLocaleString('es-CO');
-            if (resumenNumeros) resumenNumeros.innerHTML = cantidad + ' boletas';
-            if (resumenTotal) resumenTotal.innerText = '$' + total.toLocaleString('es-CO');
-            if (totalInput) totalInput.value = total;
+            const fichas = calcularFichas(cantidad);
+            
+            document.getElementById('cantTicketsDesktop').innerText = cantidad;
+            document.getElementById('fichasDoradasDesktop').innerText = fichas.doradas;
+            document.getElementById('fichasRojasDesktop').innerText = fichas.rojas;
+            document.getElementById('totalDineroDesktop').innerText = '$' + total.toLocaleString('es-CO');
+            document.getElementById('lblCantidadMobile').innerText = cantidad;
+            document.getElementById('lblTotalMobile').innerText = '$' + total.toLocaleString('es-CO');
+            document.getElementById('resumenNumeros').innerHTML = cantidad + ' boletas';
+            document.getElementById('resumenDoradas').innerHTML = fichas.doradas;
+            document.getElementById('resumenRojas').innerHTML = fichas.rojas;
+            document.getElementById('resumenTotal').innerText = '$' + total.toLocaleString('es-CO');
+            document.getElementById('totalPagarInput').value = total;
+            
             const btnDesktop = document.getElementById('btnPagarDesktop');
             const btnMobile = document.getElementById('btnPagarMobile');
             if (btnDesktop) btnDesktop.disabled = false;
             if (btnMobile) btnMobile.disabled = false;
-            const cartMobile = document.getElementById('mobileCart');
-            if (cartMobile) cartMobile.classList.add('visible');
+            document.getElementById('mobileCart').classList.add('visible');
         }
         
         document.querySelectorAll('.paquete-radio').forEach(radio => {
             radio.addEventListener('change', function() {
                 let cantidad = parseInt(this.value);
                 let total = cantidad * precioUnitario;
-                if (cantidad === 5) total = 13000;
-                if (cantidad === 10) total = 25000;
                 actualizarCompra(cantidad, total);
             });
         });
         
-        document.getElementById('btnCustom').addEventListener('click', function() {
-            let cantidad = parseInt(document.getElementById('cantidadCustom').value);
-            if (isNaN(cantidad) || cantidad < 1) {
-                alert('Ingresa una cantidad válida (mínimo 1 boleta)');
-                return;
-            }
-            let total = cantidad * precioUnitario;
-            actualizarCompra(cantidad, total);
-            document.querySelectorAll('.paquete-radio').forEach(r => r.checked = false);
-        });
-        
-        function abrirCheckout() {
-            if (cantidadSeleccionada < 1) {
-                alert('Selecciona al menos 1 boleta');
-                return;
-            }
-            new bootstrap.Modal(document.getElementById('modalCheckout')).show();
-        }
-        
-        function seleccionarMetodo(metodo) {
-            const pseDiv = document.getElementById('metodoPSE');
-            const transferenciaDiv = document.getElementById('metodoTransferencia');
-            if (pseDiv) pseDiv.classList.add('d-none');
-            if (transferenciaDiv) transferenciaDiv.classList.add('d-none');
-            if (metodo === 'pse' && pseDiv) pseDiv.classList.remove('d-none');
-            if (metodo === 'transferencia' && transferenciaDiv) transferenciaDiv.classList.remove('d-none');
-        }
-        
+        function abrirCheckout() { if (cantidadSeleccionada < 1) { alert('Selecciona al menos 1 boleta'); return; } new bootstrap.Modal(document.getElementById('modalCheckout')).show(); }
+        function seleccionarMetodo(metodo) { document.getElementById('metodoPSE').classList.add('d-none'); document.getElementById('metodoTransferencia').classList.add('d-none'); document.getElementById(metodo === 'pse' ? 'metodoPSE' : 'metodoTransferencia').classList.remove('d-none'); }
         function iniciarPagoPSE() { alert('🔐 Redirigiendo a PSE...'); }
-        
-        function procesarTransferencia(event) {
-            event.preventDefault();
-            const comprobante = document.getElementById('comprobantePago');
-            if (comprobante && !comprobante.files.length) {
-                alert('📎 Sube el comprobante');
-                return;
-            }
-            alert('✅ Transferencia registrada');
-            incrementarVentas(cantidadSeleccionada);
-            bootstrap.Modal.getInstance(document.getElementById('modalCheckout')).hide();
-            cantidadSeleccionada = 0;
-            actualizarCompra(0, 0);
-        }
-        
-        function copiarTexto(id) {
-            navigator.clipboard.writeText(document.getElementById(id).innerText);
-            alert('📋 Copiado');
-        }
-        
-        function buscarTickets() {
-            let telefono = document.getElementById('inputBuscarTickets').value;
-            if (telefono.length < 7) { alert('📱 Número válido'); return; }
-            document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-info" style="background: #1a1a1a; border-color: #333; color: #ffffff;">🔍 Buscando...</div>';
-            setTimeout(() => {
-                document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-warning" style="background: #1a1a1a; border-color: #333; color: #ffc107;">⚠️ No hay boletas para ' + telefono + '</div>';
-            }, 1500);
-        }
+        function procesarTransferencia(e) { e.preventDefault(); alert('✅ Transferencia registrada'); incrementarVentas(cantidadSeleccionada); bootstrap.Modal.getInstance(document.getElementById('modalCheckout')).hide(); cantidadSeleccionada = 0; actualizarCompra(0, 0); }
+        function copiarTexto(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert('📋 Copiado'); }
+        function buscarTickets() { let t = document.getElementById('inputBuscarTickets').value; if (t.length < 7) { alert('📱 Número válido'); return; } document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-info" style="background:#1a1a1a; color:#fff;">🔍 Buscando...</div>'; setTimeout(() => { document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-warning" style="background:#1a1a1a; color:#ffc107;">⚠️ No hay boletas para ' + t + '</div>'; }, 1500); }
+        function incrementarVentas(cantidad) { boletasVendidas += cantidad; porcentaje = (boletasVendidas / metaTotal) * 100; if (porcentaje > 100) porcentaje = 100; actualizarBarraProgreso(); }
         
         document.addEventListener('DOMContentLoaded', function() {
             actualizarBarraProgreso();
             if (typeof Splide !== 'undefined') {
                 new Splide('#main-carousel', { type: 'loop', perPage: 1, arrows: true, autoplay: true, interval: 4000 }).mount();
-                new Splide('#thumbnail-carousel', { type: 'slide', perPage: 3, gap: 8, arrows: false, isNavigation: true }).mount();
+                new Splide('#thumbnail-carousel', { type: 'slide', perPage: 4, gap: 8, arrows: false, isNavigation: true }).mount();
             }
         });
         
