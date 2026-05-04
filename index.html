@@ -174,20 +174,20 @@
         .precio-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a !important; }
         .precio-valor { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #0a0a0a !important; }
 
-        /* Paquetes grid - AHORA EN CELULAR TAMBIÉN EN HORIZONTAL */
+        /* Paquetes grid - EN CELULAR TAMBIÉN EN HORIZONTAL */
         .paquetes-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
             gap: 12px; 
         }
         
-        /* Para celular muy pequeño, reducimos padding y fuentes */
+        /* Para celular, reducimos tamaño pero mantenemos descripciones */
         @media (max-width: 480px) {
             .paquetes-grid { 
                 gap: 8px; 
             }
             .paquete-card {
-                padding: 0.8rem 0.4rem;
+                padding: 0.7rem 0.3rem;
             }
             .paquete-card .cantidad { 
                 font-size: 1.2rem; 
@@ -198,16 +198,21 @@
                 margin-bottom: 6px;
             }
             .preview-ficha-imagen { 
-                width: 24px; 
-                height: 24px; 
+                width: 22px; 
+                height: 22px; 
             }
             .preview-ficha-cantidad { 
                 font-size: 0.55rem; 
             }
             .fichas-preview {
-                gap: 6px;
+                gap: 5px;
+                margin-top: 5px;
+                padding-top: 5px;
+            }
+            .paquete-descripcion {
+                font-size: 0.55rem;
                 margin-top: 6px;
-                padding-top: 6px;
+                line-height: 1.2;
             }
             .descuento-badge, .badge-popular {
                 font-size: 0.55rem;
@@ -220,8 +225,8 @@
         
         @media (max-width: 380px) {
             .preview-ficha-imagen { 
-                width: 20px; 
-                height: 20px; 
+                width: 18px; 
+                height: 18px; 
             }
             .preview-ficha-cantidad { 
                 font-size: 0.5rem; 
@@ -231,6 +236,9 @@
             }
             .paquete-card .precio { 
                 font-size: 0.85rem; 
+            }
+            .paquete-descripcion {
+                font-size: 0.5rem;
             }
         }
         
@@ -247,8 +255,15 @@
         .paquete-card .cantidad, .paquete-card .precio { color: #ffffff; }
         .btn-check:checked+.paquete-card { border-color: #ffffff; background: #1f1f1f; transform: scale(1.02); }
         .paquete-card:hover { border-color: #ffffff; background: #1f1f1f; }
-        .paquete-card .cantidad { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+        .paquete-card .cantidad { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
         .paquete-card .precio { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+        .paquete-descripcion {
+            font-size: 0.6rem;
+            color: #aaa;
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid #333;
+        }
         
         .descuento-badge { 
             position: absolute; 
@@ -256,9 +271,9 @@
             right: 8px; 
             background: #ffffff; 
             color: #0a0a0a; 
-            font-size: 0.6rem; 
+            font-size: 0.55rem; 
             font-weight: 700; 
-            padding: 2px 8px; 
+            padding: 2px 6px; 
             border-radius: 30px; 
         }
         .badge-popular { 
@@ -269,16 +284,16 @@
             color: white; 
             font-size: 0.6rem; 
             font-weight: 700; 
-            padding: 2px 10px; 
+            padding: 2px 8px; 
             border-radius: 30px; 
         }
         
         .fichas-preview {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 8px;
-            padding-top: 8px;
+            gap: 8px;
+            margin-top: 6px;
+            padding-top: 6px;
             border-top: 1px solid #333;
             flex-wrap: wrap;
         }
@@ -286,11 +301,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
+            gap: 2px;
         }
         .preview-ficha-imagen {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             background: #1a1a1a;
             border-radius: 8px;
             display: flex;
@@ -299,7 +314,7 @@
             overflow: hidden;
         }
         .preview-ficha-imagen img { width: 100%; height: 100%; object-fit: contain; }
-        .preview-ficha-cantidad { font-size: 0.65rem; font-weight: 600; }
+        .preview-ficha-cantidad { font-size: 0.6rem; font-weight: 600; }
         .preview-ficha-dorada .preview-ficha-cantidad { color: #f1c40f; }
         .preview-ficha-verde .preview-ficha-cantidad { color: #2ecc71; }
         .preview-ficha-roja .preview-ficha-cantidad { color: #e74c3c; }
@@ -502,62 +517,77 @@
             <div class="row g-3">
                 <div class="col-lg-8">
                     <div class="paquetes-grid mb-3">
+                        <!-- Paquete 1 boleta -->
                         <div>
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq1" value="1">
                             <label class="paquete-card d-block" for="paq1">
-                                <div class="cantidad">1</div>
+                                <div class="cantidad">1 BOLETA</div>
                                 <div class="precio">$5.000</div>
                                 <div class="fichas-preview">
                                     <div class="preview-ficha preview-ficha-dorada">
                                         <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
-                                        <span class="preview-ficha-cantidad">1</span>
+                                        <span class="preview-ficha-cantidad">1 Ficha Dorada</span>
                                     </div>
+                                </div>
+                                <div class="paquete-descripcion">
+                                    🎯 Participas por Moto, Xbox y 4 premios de $500.000
                                 </div>
                             </label>
                         </div>
                         
+                        <!-- Paquete 4 boletas -->
                         <div>
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq4" value="4">
                             <label class="paquete-card d-block" for="paq4">
-                                <span class="descuento-badge">+2 ROJAS</span>
-                                <div class="cantidad">4</div>
+                                <span class="descuento-badge">+2 ROJAS GRATIS</span>
+                                <div class="cantidad">4 BOLETAS</div>
                                 <div class="precio">$20.000</div>
                                 <div class="fichas-preview">
                                     <div class="preview-ficha preview-ficha-dorada">
                                         <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
-                                        <span class="preview-ficha-cantidad">4</span>
+                                        <span class="preview-ficha-cantidad">4 Doradas</span>
                                     </div>
                                     <div class="preview-ficha preview-ficha-roja">
                                         <div class="preview-ficha-imagen"><img src="ficha-roja.png" onerror="this.innerHTML='🔴'"></div>
-                                        <span class="preview-ficha-cantidad">2</span>
+                                        <span class="preview-ficha-cantidad">2 Rojas</span>
                                     </div>
+                                </div>
+                                <div class="paquete-descripcion">
+                                    🎯 Participas por Moto, Xbox y 4 premios de $500.000<br>
+                                    🎁 ¡Incluye 2 Fichas Rojas! Sorteo especial de $2.000.000
                                 </div>
                             </label>
                         </div>
                         
+                        <!-- Paquete 10 boletas -->
                         <div>
                             <input type="radio" class="btn-check paquete-radio" name="paqueteNumeros" id="paq10" value="10">
                             <label class="paquete-card d-block" for="paq10">
                                 <span class="badge-popular">🔥 Más vendido</span>
-                                <div class="cantidad">10</div>
+                                <div class="cantidad">10 BOLETAS</div>
                                 <div class="precio">$50.000</div>
                                 <div class="fichas-preview">
                                     <div class="preview-ficha preview-ficha-dorada">
                                         <div class="preview-ficha-imagen"><img src="ficha-dorada.png" onerror="this.innerHTML='⭐'"></div>
-                                        <span class="preview-ficha-cantidad">10</span>
+                                        <span class="preview-ficha-cantidad">10 Doradas</span>
                                     </div>
                                     <div class="preview-ficha preview-ficha-roja">
                                         <div class="preview-ficha-imagen"><img src="ficha-roja.png" onerror="this.innerHTML='🔴'"></div>
-                                        <span class="preview-ficha-cantidad">5</span>
+                                        <span class="preview-ficha-cantidad">5 Rojas</span>
                                     </div>
+                                </div>
+                                <div class="paquete-descripcion">
+                                    🎯 Participas por Moto, Xbox y 4 premios de $500.000<br>
+                                    🎁 ¡Incluye 5 Fichas Rojas! Sorteo especial de $2.000.000<br>
+                                    ⭐ ¡Mejor relación precio-beneficio!
                                 </div>
                             </label>
                         </div>
                     </div>
 
                     <div class="alert alert-custom mt-2 text-center py-2" style="font-size: 0.7rem;">
-                        💡 Más boletas = más oportunidades + Fichas Rojas gratis para $2.000.000<br>
-                        🍀 Las 10 Fichas Verdes están distribuidas entre TODAS las boletas
+                        💡 Más boletas = más oportunidades de ganar + Fichas Rojas gratis para el sorteo de $2.000.000<br>
+                        🍀 Las 10 Fichas Verdes ($200.000 c/u - Pago inmediato) están distribuidas entre TODAS las boletas vendidas. ¡Suerte!
                     </div>
                 </div>
 
