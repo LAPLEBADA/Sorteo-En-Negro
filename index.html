@@ -20,10 +20,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* ========== PROTECCIÓN VISUAL - DESHABILITAR SELECCIÓN ========== */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Permitir selección solo en inputs */
+        input, textarea, select, [contenteditable="true"] {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        /* Prevenir arrastre de imágenes */
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            pointer-events: auto;
+        }
+
+        img, .ficha-imagen {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         body {
@@ -33,6 +59,34 @@
             overflow-x: hidden;
             width: 100%;
             position: relative;
+        }
+
+        /* Mensaje de protección */
+        #protection-message {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            color: #0a0a0a;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            z-index: 10000;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 576px) {
+            #protection-message {
+                font-size: 11px;
+                white-space: normal;
+                text-align: center;
+                max-width: 90%;
+            }
         }
 
         /* Todos los textos en blanco por defecto */
@@ -64,7 +118,7 @@
         .navbar-plebada {
             background: rgba(10, 10, 10, 0.98) !important;
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #222;
             padding: 0.75rem 0;
         }
 
@@ -83,7 +137,7 @@
         }
 
         .hero-title .highlight {
-            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
@@ -93,7 +147,7 @@
         .fecha-badge {
             display: inline-block;
             background: #ffffff;
-            color: #000000 !important;
+            color: #0a0a0a !important;
             padding: 6px 16px;
             border-radius: 40px;
             font-size: 0.75rem;
@@ -103,13 +157,13 @@
 
         .fecha-badge i,
         .fecha-badge span {
-            color: #000000 !important;
+            color: #0a0a0a !important;
         }
 
         /* Cards de premios - CON EFECTO HOVER ILUMINADO */
         .premio-card {
             background: #141414;
-            border: 1px solid #333;
+            border: 1px solid #222;
             border-radius: 20px;
             padding: 1rem 1.25rem;
             transition: all 0.3s ease;
@@ -149,7 +203,7 @@
             font-size: 0.65rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #ffffff;
+            color: #aaa;
             font-weight: 600;
         }
 
@@ -162,7 +216,7 @@
         /* FICHAS BENDECIDAS - CON EFECTO HOVER ILUMINADO */
         .fichas-container {
             background: #141414;
-            border: 1px solid #333;
+            border: 1px solid #222;
             border-radius: 20px;
             padding: 1rem;
         }
@@ -199,7 +253,7 @@
             width: 100%;
             height: 100%;
             background: #1a1a1a;
-            border: 1.5px solid #444;
+            border: 1.5px solid #333;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -212,6 +266,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            pointer-events: none;
         }
 
         /* Número SOBRE la ficha */
@@ -231,6 +286,7 @@
             z-index: 2;
             white-space: nowrap;
             letter-spacing: 0.5px;
+            pointer-events: none;
         }
 
         /* Ficha especial */
@@ -256,14 +312,14 @@
             font-size: 0.65rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #000000 !important;
+            color: #0a0a0a !important;
         }
 
         .precio-valor {
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             font-weight: 700;
-            color: #000000 !important;
+            color: #0a0a0a !important;
         }
 
         /* Paquetes de compra */
@@ -319,7 +375,7 @@
 
         .paquete-card .precio-original {
             font-size: 0.7rem;
-            color: #aaaaaa;
+            color: #888;
             text-decoration: line-through;
         }
 
@@ -401,7 +457,7 @@
             background: #141414;
             border-radius: 16px;
             padding: 0.8rem;
-            border: 1px solid #333;
+            border: 1px solid #222;
         }
 
         .progress-label {
@@ -429,10 +485,6 @@
             height: 100%;
             width: 0%;
             transition: width 0.8s ease;
-        }
-
-        .progress-total {
-            display: none;
         }
 
         /* Botones sociales */
@@ -464,13 +516,14 @@
         .btn-social img {
             border-radius: 12px;
             width: 42px;
+            pointer-events: none;
         }
 
         /* Carrito móvil */
         .mobile-cart-bar {
             background: rgba(10, 10, 10, 0.98);
             backdrop-filter: blur(15px);
-            border-top: 1px solid #333;
+            border-top: 1px solid #222;
             transform: translateY(100%);
             transition: transform 0.3s ease;
             z-index: 1000;
@@ -497,7 +550,7 @@
         }
 
         hr {
-            border-color: #333;
+            border-color: #222;
         }
 
         /* Ajustes para móvil */
@@ -525,19 +578,20 @@
             width: 100%;
             height: auto;
             border-radius: 16px;
+            pointer-events: none;
         }
 
         /* Alert */
         .alert-custom {
             background: #141414;
-            border: 1px solid #333;
+            border: 1px solid #222;
             color: #ffffff;
         }
 
         /* Sidebar carrito */
         .card-sidebar {
             background: #141414 !important;
-            border: 1px solid #333 !important;
+            border: 1px solid #222 !important;
         }
 
         .card-sidebar span,
@@ -547,26 +601,29 @@
 
         /* Textos misceláneos */
         .text-muted {
-            color: #cccccc !important;
+            color: #aaa !important;
         }
 
         small.text-muted {
-            color: #aaaaaa !important;
+            color: #888 !important;
         }
 
         .modal-content,
         .modal-body,
         .modal-header {
             color: #ffffff;
+            background: #141414;
         }
 
         .modal-body input,
         .modal-body select {
             color: #ffffff;
+            background: #1a1a1a;
+            border-color: #333;
         }
 
         .modal-body input::placeholder {
-            color: #888;
+            color: #666;
         }
 
         .btn-close-white {
@@ -577,13 +634,16 @@
             color: #ffffff;
         }
 
-        footer p.text-muted {
-            color: #aaaaaa !important;
+        footer p {
+            color: #888 !important;
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Mensaje de protección -->
+    <div id="protection-message">🔒 Contenido protegido. No se permite copiar ni inspeccionar.</div>
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-plebada sticky-top">
@@ -709,7 +769,7 @@
 
                     <!-- FICHAS BENDECIDAS CON EFECTO HOVER -->
                     <div class="fichas-container mb-3">
-                        <div class="fw-bold mb-2 text-center" style="font-size: 0.7rem; letter-spacing: 1px; color: #ffffff;">
+                        <div class="fw-bold mb-2 text-center" style="font-size: 0.7rem; letter-spacing: 1px; color: #aaa;">
                             🎯 FICHAS BENDECIDAS - Ganan $200.000
                         </div>
                         <div class="fichas-grid">
@@ -795,7 +855,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-2">
-                            <small style="color: #cccccc;">✨ Pago inmediato si sale tu ficha ✨</small>
+                            <small style="color: #888;">✨ Pago inmediato si sale tu ficha ✨</small>
                         </div>
                     </div>
 
@@ -867,17 +927,17 @@
                         </div>
                     </div>
 
-                    <div class="alert alert-custom mt-3 text-center py-2" style="font-size: 0.8rem; background: #141414; border: 1px solid #333;">
+                    <div class="alert alert-custom mt-3 text-center py-2" style="font-size: 0.8rem;">
                         💡 Más boletas = más oportunidades de ganar
                     </div>
                 </div>
 
                 <!-- Sidebar desktop -->
                 <div class="col-lg-4 d-none d-lg-block">
-                    <div class="card border-0 shadow-lg rounded-4 sticky-top" style="top: 80px; background: #141414; border: 1px solid #333 !important;">
+                    <div class="card border-0 shadow-lg rounded-4 sticky-top" style="top: 80px; background: #141414; border: 1px solid #222 !important;">
                         <div class="card-body p-3">
                             <h5 class="font-serif fw-bold mb-3" style="color: #ffffff;">🛒 Tu compra</h5>
-                            <div class="d-flex justify-content-between py-2 border-top border-bottom" style="border-color: #333 !important;">
+                            <div class="d-flex justify-content-between py-2 border-top border-bottom" style="border-color: #222 !important;">
                                 <span style="color: #ffffff;">Boletas</span>
                                 <strong id="cantTicketsDesktop" style="color: #ffffff;">0</strong>
                             </div>
@@ -896,7 +956,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="pt-4 pb-3 border-top mt-3" style="background: #0a0a0a; border-color: #333 !important;">
+    <footer class="pt-4 pb-3 border-top mt-3" style="background: #0a0a0a; border-color: #222 !important;">
         <div class="container">
             <div class="row g-3">
                 <div class="col-md-4 text-center text-md-start">
@@ -904,7 +964,7 @@
                         <img src="logo.png" alt="La Plebada" height="30" onerror="this.style.display='none'">
                         <span class="font-serif fw-bold fs-5" style="color: #ffffff;">La Plebada</span>
                     </div>
-                    <p style="color: #cccccc;">Sorteos 100% legales. Participa y haz realidad tus sueños.</p>
+                    <p style="color: #aaa;">Sorteos 100% legales. Participa y haz realidad tus sueños.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <h6 class="fw-bold mb-2 small" style="color: #ffffff;">Enlaces</h6>
@@ -916,12 +976,12 @@
                 </div>
                 <div class="col-md-4 text-center text-md-start">
                     <h6 class="fw-bold mb-2 small" style="color: #ffffff;">Contacto</h6>
-                    <p style="color: #cccccc;" class="small mb-1"><i class="ti ti-phone me-1"></i> (+57) 300 000 0000</p>
-                    <p style="color: #cccccc;" class="small"><i class="ti ti-mail me-1"></i> info@laplebada.com</p>
+                    <p style="color: #aaa;" class="small mb-1"><i class="ti ti-phone me-1"></i> (+57) 300 000 0000</p>
+                    <p style="color: #aaa;" class="small"><i class="ti ti-mail me-1"></i> info@laplebada.com</p>
                 </div>
             </div>
             <hr class="my-3">
-            <div class="text-center small" style="color: #888;">© 2026 La Plebada</div>
+            <div class="text-center small" style="color: #666;">© 2026 La Plebada</div>
         </div>
     </footer>
 
@@ -931,7 +991,7 @@
             <div>
                 <span style="color: #ffffff;">Total</span>
                 <div class="font-serif fw-bold fs-4" id="lblTotalMobile" style="color: #ffffff;">$0</div>
-                <span id="lblCantidadMobile" style="color: #cccccc;">0 boletas</span>
+                <span id="lblCantidadMobile" style="color: #aaa;">0 boletas</span>
             </div>
             <button class="btn btn-light rounded-pill px-4 fw-bold" style="background: #fff; color: #000;" onclick="abrirCheckout()" id="btnPagarMobile" disabled>PAGAR</button>
         </div>
@@ -940,13 +1000,13 @@
     <!-- MODALES -->
     <div class="modal fade" id="modalBuscarTickets" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0 shadow" style="background: #141414;">
-                <div class="modal-header border-0 pb-0" style="border-bottom-color: #333 !important;">
+            <div class="modal-content rounded-4 border-0 shadow" style="background: #141414; border: 1px solid #222;">
+                <div class="modal-header border-0 pb-0" style="border-bottom-color: #222 !important;">
                     <h5 class="modal-title fw-bold" style="color: #ffffff;">🔍 Buscar mis boletas</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="tel" id="inputBuscarTickets" class="form-control rounded-pill text-center mb-3" style="background: #1a1a1a; border-color: #444; color: #ffffff;" placeholder="Ej: 3001234567">
+                    <input type="tel" id="inputBuscarTickets" class="form-control rounded-pill text-center mb-3" style="background: #1a1a1a; border-color: #333; color: #ffffff;" placeholder="Ej: 3001234567">
                     <button class="btn btn-light w-100 rounded-pill py-2" style="background: #fff; color: #000;" onclick="buscarTickets()">Buscar</button>
                     <div id="resultadoBusqueda" class="mt-3 text-center small"></div>
                 </div>
@@ -956,8 +1016,8 @@
 
     <div class="modal fade" id="modalCheckout" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0 shadow" style="background: #141414;">
-                <div class="modal-header border-0 rounded-top-4" style="background: #1a1a1a; border-bottom: 1px solid #333;">
+            <div class="modal-content rounded-4 border-0 shadow" style="background: #141414; border: 1px solid #222;">
+                <div class="modal-header border-0 rounded-top-4" style="background: #1a1a1a; border-bottom: 1px solid #222;">
                     <h5 class="modal-title fw-bold" style="color: #ffffff;">Finalizar compra</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
@@ -977,18 +1037,18 @@
                         </div>
                         <input type="hidden" id="totalPagarInput">
                         <h6 class="fw-bold mb-2 small" style="color: #ffffff;">Datos del comprador</h6>
-                        <input type="tel" class="form-control rounded-pill mb-2" id="celularCliente" style="background: #1a1a1a; border-color: #444; color: #ffffff;" placeholder="Celular" required>
+                        <input type="tel" class="form-control rounded-pill mb-2" id="celularCliente" style="background: #1a1a1a; border-color: #333; color: #ffffff;" placeholder="Celular" required>
                         <div class="row g-2 mb-2">
-                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background: #1a1a1a; border-color: #444; color: #ffffff;" id="nombreCliente" placeholder="Nombre" required></div>
-                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background: #1a1a1a; border-color: #444; color: #ffffff;" id="apellidoCliente" placeholder="Apellido" required></div>
+                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background: #1a1a1a; border-color: #333; color: #ffffff;" id="nombreCliente" placeholder="Nombre" required></div>
+                            <div class="col-6"><input type="text" class="form-control rounded-pill" style="background: #1a1a1a; border-color: #333; color: #ffffff;" id="apellidoCliente" placeholder="Apellido" required></div>
                         </div>
-                        <select class="form-select rounded-pill mb-3" id="departamento" style="background: #1a1a1a; border-color: #444; color: #ffffff;" required>
+                        <select class="form-select rounded-pill mb-3" id="departamento" style="background: #1a1a1a; border-color: #333; color: #ffffff;" required>
                             <option value="">Departamento</option>
                             <option>Antioquia</option>
                             <option>Bogotá</option>
                             <option>Valle</option>
                         </select>
-                        <hr style="border-color: #333;">
+                        <hr style="border-color: #222;">
                         <h6 class="fw-bold mb-2 small" style="color: #ffffff;">Método de pago</h6>
                         <div class="d-flex gap-2 mb-2">
                             <button type="button" class="btn btn-outline-light rounded-pill px-3 btn-sm" onclick="seleccionarMetodo('pse')">💳 PSE</button>
@@ -1008,7 +1068,7 @@
                                         <div><small style="color: #ffffff;"><strong>Nequi</strong><br><span id="nequi">3117835000</span></small></div>
                                         <button class="btn btn-sm btn-outline-light rounded-pill" onclick="copiarTexto('nequi')">Copiar</button>
                                     </div>
-                                    <input type="file" class="form-control form-control-sm mb-2" id="comprobantePago" accept="image/*" style="background: #1a1a1a; border-color: #444; color: #ffffff;">
+                                    <input type="file" class="form-control form-control-sm mb-2" id="comprobantePago" accept="image/*" style="background: #1a1a1a; border-color: #333; color: #ffffff;">
                                     <button type="button" class="btn btn-success w-100 rounded-pill py-1" onclick="procesarTransferencia(event)">Confirmar pago</button>
                                 </div>
                             </div>
@@ -1022,6 +1082,82 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
+        // ==================== PROTECCIÓN ANTISELECT Y ANTICOPIA ====================
+        
+        // Deshabilitar clic derecho
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            mostrarMensajeProteccion();
+            return false;
+        });
+        
+        // Deshabilitar teclas de desarrollador
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) ||
+                (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+                mostrarMensajeProteccion();
+                return false;
+            }
+            
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'x')) {
+                if (!e.target.closest('input') && !e.target.closest('textarea') && !e.target.closest('select')) {
+                    e.preventDefault();
+                    mostrarMensajeProteccion();
+                    return false;
+                }
+            }
+        });
+        
+        // Deshabilitar arrastre
+        document.querySelectorAll('img, .premio-card, .ficha-item').forEach(el => {
+            el.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+        });
+        
+        // Detectar DevTools
+        let devtoolsOpen = false;
+        const checkDevTools = function() {
+            const threshold = 160;
+            const widthDiff = window.outerWidth - window.innerWidth > threshold;
+            const heightDiff = window.outerHeight - window.innerHeight > threshold;
+            if (widthDiff || heightDiff) {
+                if (!devtoolsOpen) {
+                    devtoolsOpen = true;
+                    mostrarMensajeProteccion();
+                }
+            } else {
+                devtoolsOpen = false;
+            }
+        };
+        
+        let mensajeTimeout;
+        function mostrarMensajeProteccion() {
+            const msg = document.getElementById('protection-message');
+            if (msg) {
+                msg.style.display = 'block';
+                clearTimeout(mensajeTimeout);
+                mensajeTimeout = setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 2000);
+            }
+        }
+        
+        setInterval(checkDevTools, 500);
+        
+        document.body.style.userSelect = 'none';
+        document.body.style.webkitUserSelect = 'none';
+        
+        document.querySelectorAll('input, textarea, select').forEach(el => {
+            el.style.userSelect = 'text';
+            el.style.webkitUserSelect = 'text';
+        });
+        
+        // ==================== FUNCIONES DEL SORTEO ====================
+        
         let cantidadSeleccionada = 0;
         let totalSeleccionado = 0;
         const precioUnitario = 3000;
@@ -1131,9 +1267,9 @@
         function buscarTickets() {
             let telefono = document.getElementById('inputBuscarTickets').value;
             if (telefono.length < 7) { alert('📱 Número válido'); return; }
-            document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-info" style="background: #1a1a1a; border-color: #444; color: #ffffff;">🔍 Buscando...</div>';
+            document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-info" style="background: #1a1a1a; border-color: #333; color: #ffffff;">🔍 Buscando...</div>';
             setTimeout(() => {
-                document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-warning" style="background: #1a1a1a; border-color: #444; color: #ffc107;">⚠️ No hay boletas para ' + telefono + '</div>';
+                document.getElementById('resultadoBusqueda').innerHTML = '<div class="alert alert-warning" style="background: #1a1a1a; border-color: #333; color: #ffc107;">⚠️ No hay boletas para ' + telefono + '</div>';
             }, 1500);
         }
         
